@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://conklkig1ygs6"]
+
+[ext_resource type="Script" path="res://Nodes/Entities/HeatSorce/heat_source.gd" id="1_404q3"]
+[ext_resource type="Texture2D" uid="uid://b25nno2y6u6x5" path="res://Nodes/Entities/HeatSorce/heat_source.png" id="2_6j5fx"]
+[ext_resource type="PackedScene" uid="uid://cjlgha38h0ou3" path="res://Nodes/Components/PlaceableObject/ReclicableArea/reclicable_area.tscn" id="3_nerwu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6anud"]
+radius = 64.0
+
+[sub_resource type="Gradient" id="Gradient_a2414"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.164706, 0.164706, 0.254902, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_51661"]
+gradient = SubResource("Gradient_a2414")
+width = 40
+height = 14
+
+[sub_resource type="Gradient" id="Gradient_gclb7"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.6, 0.7)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ubpsx"]
+gradient = SubResource("Gradient_gclb7")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Curve" id="Curve_gegxv"]
+_data = [Vector2(0, 0.639942), 0.0, 0.0, 0, 0, Vector2(0.2, 0.4), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0903791), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="Curve" id="Curve_h4mfh"]
+_data = [Vector2(0, 0.507289), 0.0, 0.0, 0, 0, Vector2(0.182143, 0.98105), 0.0, 0.0, 0, 0, Vector2(0.482143, 0.677843), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_w6rws"]
+offsets = PackedFloat32Array(0, 0.734127)
+colors = PackedColorArray(1, 1, 1, 1, 0.572669, 1.1792e-06, 3.36915e-07, 1)
+
+[sub_resource type="Gradient" id="Gradient_we24y"]
+colors = PackedColorArray(1, 0.54902, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kchh"]
+size = Vector2(54, 48)
+
+[node name="HeatSource" type="Node2D"]
+script = ExtResource("1_404q3")
+_placed = true
+
+[node name="HeatArea" type="Area2D" parent="."]
+position = Vector2(32, -48)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeatArea"]
+shape = SubResource("CircleShape2D_6anud")
+debug_color = Color(0.87451, 0, 0.321569, 0.0235294)
+
+[node name="HeatSource" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+texture = ExtResource("2_6j5fx")
+centered = false
+
+[node name="ClipFurnace" type="Sprite2D" parent="HeatSource"]
+clip_children = 2
+position = Vector2(32, 18)
+texture = SubResource("GradientTexture2D_51661")
+
+[node name="FireParticle" type="CPUParticles2D" parent="HeatSource/ClipFurnace"]
+position = Vector2(0, 6)
+amount = 18
+lifetime = 0.8
+randomness = 0.5
+lifetime_randomness = 0.5
+fixed_fps = 60
+draw_order = 1
+texture = SubResource("GradientTexture2D_ubpsx")
+emission_shape = 3
+emission_rect_extents = Vector2(16, 1)
+gravity = Vector2(0, -32)
+split_scale = true
+scale_curve_x = SubResource("Curve_gegxv")
+scale_curve_y = SubResource("Curve_h4mfh")
+color_ramp = SubResource("Gradient_w6rws")
+color_initial_ramp = SubResource("Gradient_we24y")
+
+[node name="ReclicableArea" parent="." node_paths=PackedStringArray("placeble_parent") instance=ExtResource("3_nerwu")]
+position = Vector2(32, -56)
+placeble_parent = NodePath("..")
+
+[node name="Collision" parent="ReclicableArea" index="0"]
+shape = SubResource("RectangleShape2D_6kchh")
+
+[connection signal="area_entered" from="HeatArea" to="." method="_on_heat_area_area_entered"]
+[connection signal="area_exited" from="HeatArea" to="." method="_on_heat_area_area_exited"]
+
+[editable path="ReclicableArea"]

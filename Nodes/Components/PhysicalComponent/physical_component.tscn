@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpayjc0xwccyx"]
+
+[ext_resource type="Script" path="res://Nodes/Components/PhysicalComponent/physical_component.gd" id="1_2i1dm"]
+[ext_resource type="Texture2D" uid="uid://cdwax7xjce786" path="res://Nodes/Components/PhysicalComponent/basic_temperature_gradient.tres" id="2_pmqa8"]
+
+[node name="PhysicalComponent" type="Node2D"]
+script = ExtResource("1_2i1dm")
+temperature_modulation = ExtResource("2_pmqa8")

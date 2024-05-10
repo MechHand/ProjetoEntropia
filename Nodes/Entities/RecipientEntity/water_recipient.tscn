@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://qs0okowj3v1f"]
+
+[ext_resource type="Script" path="res://Nodes/Entities/RecipientEntity/recipient.gd" id="1_amiiv"]
+[ext_resource type="PackedScene" uid="uid://bg5giyx3mgkea" path="res://Nodes/Entities/PipeEntity/pipe_entrance.tscn" id="1_ngwto"]
+[ext_resource type="Texture2D" uid="uid://cdwax7xjce786" path="res://Nodes/Components/PhysicalComponent/basic_temperature_gradient.tres" id="2_0iuma"]
+[ext_resource type="Texture2D" uid="uid://34pibw80rvve" path="res://Nodes/Entities/RecipientEntity/water_recipient_empty.png" id="4_7anh7"]
+[ext_resource type="PackedScene" uid="uid://by640y0bhc2my" path="res://Nodes/Components/PhysicalComponent/PhysicalCollision/physical_collision_area.tscn" id="5_dr388"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07co5"]
+size = Vector2(54, 44)
+
+[node name="WaterRecipient" type="Node2D" node_paths=PackedStringArray("spritesheet_node", "pipe_entrance_1")]
+script = ExtResource("1_amiiv")
+spritesheet_node = NodePath("RecipientSprite")
+pipe_entrance_1 = NodePath("Pipe_Entrance_1")
+contains_fluid = true
+fluid_force = 1000.0
+physical_area = 30.0
+matter_acceleration = 80.0
+matter_mass = 10.0
+temperature_modulation = ExtResource("2_0iuma")
+_placed = true
+
+[node name="Pipe_Entrance_1" parent="." instance=ExtResource("1_ngwto")]
+position = Vector2(48, -80)
+
+[node name="Water_Particle" parent="Pipe_Entrance_1" index="0"]
+direction = Vector2(0, -1)
+
+[node name="RecipientSprite" type="Sprite2D" parent="."]
+position = Vector2(32, -48)
+texture = ExtResource("4_7anh7")
+
+[node name="PhysicalCollisionArea" parent="." node_paths=PackedStringArray("physical_parent") instance=ExtResource("5_dr388")]
+position = Vector2(0, -16)
+physical_parent = NodePath("..")
+should_calculate_area = false
+
+[node name="CollisionShape2D" parent="PhysicalCollisionArea" index="0"]
+position = Vector2(32, -12)
+shape = SubResource("RectangleShape2D_07co5")
+
+[editable path="Pipe_Entrance_1"]
+[editable path="PhysicalCollisionArea"]

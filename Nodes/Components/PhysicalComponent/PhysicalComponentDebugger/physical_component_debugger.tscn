@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://oii018pw5y45"]
+
+[ext_resource type="Script" path="res://Nodes/Components/PhysicalComponent/PhysicalComponentDebugger/physical_component_debugger.gd" id="1_q1n4n"]
+
+[node name="PhysicalComponentDebugger" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 4
+mouse_filter = 1
+script = ExtResource("1_q1n4n")
+
+[node name="MouseArea" type="ReferenceRect" parent="."]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 75.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Pipe1 : Ok | Pipe2 : No
+30 Cº
+1 Pa"
+
+[node name="Panel" type="Panel" parent="MarginContainer/Label"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+mouse_filter = 2
+
+[connection signal="mouse_entered" from="MouseArea" to="." method="_ref_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea" to="." method="_ref_mouse_exited"]

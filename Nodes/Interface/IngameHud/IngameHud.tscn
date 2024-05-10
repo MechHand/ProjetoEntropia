@@ -1,0 +1,146 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc8lme7gx50eq"]
+
+[ext_resource type="Texture2D" uid="uid://bdnfo4rl3mtux" path="res://Nodes/Interface/IngameHud/pipe_icon.png" id="1_j3qcl"]
+[ext_resource type="Script" path="res://Nodes/Interface/IngameHud/ingame_hud.gd" id="1_tn7gh"]
+[ext_resource type="Texture2D" uid="uid://fo87tp0on3va" path="res://Nodes/Interface/IngameHud/water_icon.png" id="2_3tf1n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kv1ud"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="IngameHud" type="CanvasLayer"]
+script = ExtResource("1_tn7gh")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CreatePipeButton" type="Button" parent="Control/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("1_j3qcl")
+icon_alignment = 1
+
+[node name="CreateRecipientButton" type="Button" parent="Control/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("2_3tf1n")
+icon_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -96.0
+offset_right = 312.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kv1ud")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "- ambient_emperature = 
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TemperatureEdit" type="LineEdit" parent="Control/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+placeholder_text = "30"
+
+[node name="Label2" type="Label" parent="Control/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "- ambient_emperature = 30 Cº
+-      [max_temperature = 200 Cº]
+- current_preassure = 0 Pa
+- temperature_resitivity = 0.1
+
+"
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_right = -104.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer3"]
+layout_mode = 2
+
+[node name="TrabalhoLabel" type="Label" parent="Control/MarginContainer3/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Trabalho gerado : 0.0"
+
+[connection signal="pressed" from="Control/MarginContainer/ScrollContainer/VBoxContainer/CreatePipeButton" to="." method="_on_create_pipe_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/ScrollContainer/VBoxContainer/CreateRecipientButton" to="." method="_on_create_recipient_button_pressed"]
+[connection signal="text_submitted" from="Control/MarginContainer2/VBoxContainer/HBoxContainer/TemperatureEdit" to="." method="_on_temperature_edit_text_submitted"]

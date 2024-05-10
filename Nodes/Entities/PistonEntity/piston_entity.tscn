@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://ci2ugpkuwfalx"]
+
+[ext_resource type="Script" path="res://Nodes/Entities/PistonEntity/piston_entity.gd" id="1_jabv4"]
+[ext_resource type="Texture2D" uid="uid://bdg3ba0sj44hn" path="res://Nodes/Entities/PistonEntity/piston.png" id="2_mu1uw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35l4e"]
+size = Vector2(32, 11)
+
+[sub_resource type="Animation" id="Animation_wn2lg"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_r7tbd"]
+resource_name = "piston_not_working"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("PistonPlaceholder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -64)]
+}
+
+[sub_resource type="Animation" id="Animation_42pyy"]
+resource_name = "piston_working"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("PistonPlaceholder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -68), Vector2(0, -60)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tkv0s"]
+_data = {
+"RESET": SubResource("Animation_wn2lg"),
+"piston_not_working": SubResource("Animation_r7tbd"),
+"piston_working": SubResource("Animation_42pyy")
+}
+
+[node name="PistonEntity" type="Node2D"]
+script = ExtResource("1_jabv4")
+
+[node name="VerifierArea" type="Area2D" parent="."]
+position = Vector2(64, -20)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerifierArea"]
+position = Vector2(-64, -12.5)
+shape = SubResource("RectangleShape2D_35l4e")
+
+[node name="PistonPlaceholder" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(0, -84)
+texture = ExtResource("2_mu1uw")
+centered = false
+
+[node name="PistonAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tkv0s")
+}
+autoplay = "piston_not_working"
+playback_default_blend_time = 0.5
+
+[connection signal="area_entered" from="VerifierArea" to="." method="_on_verifier_area_area_entered"]
+[connection signal="area_exited" from="VerifierArea" to="." method="_on_verifier_area_area_exited"]

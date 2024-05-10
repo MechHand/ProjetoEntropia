@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc8lme7gx50eq"]
+
+[ext_resource type="Texture2D" uid="uid://bdnfo4rl3mtux" path="res://Nodes/Interface/IngameHud/pipe_icon.png" id="1_j3qcl"]
+[ext_resource type="Script" path="res://Nodes/Interface/IngameHud/ingame_hud.gd" id="1_tn7gh"]
+[ext_resource type="Texture2D" uid="uid://fo87tp0on3va" path="res://Nodes/Interface/IngameHud/water_icon.png" id="2_3tf1n"]
+
+[node name="IngameHud" type="CanvasLayer"]
+script = ExtResource("1_tn7gh")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CreatePipeButton" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("1_j3qcl")
+icon_alignment = 1
+
+[node name="CreateRecipientButton" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("2_3tf1n")
+icon_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreatePipeButton" to="." method="_on_create_pipe_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateRecipientButton" to="." method="_on_create_recipient_button_pressed"]

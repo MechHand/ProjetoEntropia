@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg6uknqviraed"]
+
+[ext_resource type="Script" path="res://Nodes/Entities/PipeEntity/pipe_entity.gd" id="1_fc74y"]
+[ext_resource type="Texture2D" uid="uid://cdvskg6ocxp78" path="res://Nodes/Entities/PipeEntity/pipe_spritesheet.png" id="2_6h7m2"]
+[ext_resource type="Texture2D" uid="uid://cdwax7xjce786" path="res://Nodes/Components/PhysicalComponent/basic_temperature_gradient.tres" id="2_n0sfa"]
+[ext_resource type="PackedScene" uid="uid://oii018pw5y45" path="res://Nodes/Components/PhysicalComponent/PhysicalComponentDebugger/physical_component_debugger.tscn" id="3_hdi1x"]
+[ext_resource type="PackedScene" uid="uid://bg5giyx3mgkea" path="res://Nodes/Entities/PipeEntity/pipe_entrance.tscn" id="4_k0774"]
+
+[node name="PipeEntity" type="Node2D" node_paths=PackedStringArray("spritesheet_node", "pipe_entrance_1", "pipe_entrance_2")]
+script = ExtResource("1_fc74y")
+spritesheet_node = NodePath("SpriteNode")
+pipe_entrance_1 = NodePath("Pipe_Entrance_1")
+pipe_entrance_2 = NodePath("Pipe_Entrance_2")
+temperature_modulation = ExtResource("2_n0sfa")
+
+[node name="PhysicalComponentDebugger" parent="." node_paths=PackedStringArray("physical_parent") instance=ExtResource("3_hdi1x")]
+offset_left = 16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = -32.0
+physical_parent = NodePath("..")
+
+[node name="SpriteNode" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(16, -32)
+texture = ExtResource("2_6h7m2")
+hframes = 3
+vframes = 2
+
+[node name="Pipe_Entrance_1" parent="." instance=ExtResource("4_k0774")]
+position = Vector2(0, -32)
+
+[node name="Pipe_Entrance_2" parent="." instance=ExtResource("4_k0774")]
+position = Vector2(32, -32)

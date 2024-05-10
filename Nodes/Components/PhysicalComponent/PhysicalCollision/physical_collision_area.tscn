@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://by640y0bhc2my"]
+
+[ext_resource type="Script" path="res://Nodes/Components/PhysicalComponent/PhysicalCollision/physical_collision_area.gd" id="1_xxwki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2qy4"]
+size = Vector2(20, 10)
+
+[node name="PhysicalCollisionArea" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_xxwki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(16, -32)
+shape = SubResource("RectangleShape2D_q2qy4")
+debug_color = Color(1, 0.509804, 0, 0)

@@ -1,0 +1,130 @@
+[gd_scene load_steps=15 format=3 uid="uid://bk61m452ramoe"]
+
+[ext_resource type="Texture2D" uid="uid://ew370k1uxp41" path="res://spites/menu_animation_entropia_topselected-Sheet.png" id="1_dp3v4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0tpx"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uots1"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(1280, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdweh"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(2560, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xljwd"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(3840, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmy71"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(5120, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7w3h"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(6400, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0pyc"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(7680, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5if5"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(8960, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss2ih"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(10240, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xo1t"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(11520, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jife"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(12800, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66hkv"]
+atlas = ExtResource("1_dp3v4")
+region = Rect2(14080, 0, 1280, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ydfxo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0tpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uots1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdweh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xljwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmy71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7w3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0pyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5if5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss2ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xo1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jife")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66hkv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 337.0
+offset_top = 511.0
+offset_right = 407.0
+offset_bottom = 577.0
+scale = Vector2(2.72, 1.6)
+
+[node name="start" type="Button" parent="VBoxContainer"]
+z_index = 2
+texture_filter = 1
+layout_mode = 2
+text = "Start"
+
+[node name="configs" type="Button" parent="VBoxContainer"]
+z_index = 2
+texture_filter = 1
+layout_mode = 2
+text = "Options"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(569, 302)
+sprite_frames = SubResource("SpriteFrames_ydfxo")
+autoplay = "default"

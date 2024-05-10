@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjlgha38h0ou3"]
+
+[ext_resource type="Script" path="res://Nodes/Components/PlaceableObject/ReclicableArea/reclicable_area.gd" id="1_4npvx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqd80"]
+size = Vector2(64, 48)
+
+[node name="ReclicableArea" type="Area2D"]
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("1_4npvx")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_xqd80")
+debug_color = Color(0, 0.635294, 0.423529, 0)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

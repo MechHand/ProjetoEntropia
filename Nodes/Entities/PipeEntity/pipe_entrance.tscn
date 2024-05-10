@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg5giyx3mgkea"]
+
+[ext_resource type="Script" path="res://Nodes/Entities/PipeEntity/pipe_entrance.gd" id="1_if4tg"]
+[ext_resource type="PackedScene" uid="uid://cocf673qm1gke" path="res://Nodes/Components/FluidComponent/FluidParticles/water_particle.tscn" id="2_sahjo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3kpo"]
+size = Vector2(8, 8)
+
+[node name="Pipe_Entrance_1" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_if4tg")
+
+[node name="Water_Particle" parent="." instance=ExtResource("2_sahjo")]
+unique_name_in_owner = true
+emitting = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e3kpo")
+debug_color = Color(0, 0.423529, 1, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

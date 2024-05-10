@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnceifpuh4l2j"]
+
+[ext_resource type="PackedScene" uid="uid://cc8lme7gx50eq" path="res://Nodes/Interface/IngameHud/IngameHud.tscn" id="1_ftevu"]
+[ext_resource type="Script" path="res://Nodes/Managers/game_manager.gd" id="1_li1v0"]
+[ext_resource type="PackedScene" uid="uid://qs0okowj3v1f" path="res://Nodes/Entities/RecipientEntity/water_recipient.tscn" id="2_4n0s8"]
+[ext_resource type="PackedScene" uid="uid://conklkig1ygs6" path="res://Nodes/Entities/HeatSorce/heat_source.tscn" id="4_ixp7l"]
+[ext_resource type="PackedScene" uid="uid://ci2ugpkuwfalx" path="res://Nodes/Entities/PistonEntity/piston_entity.tscn" id="5_wkts3"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_li1v0")
+
+[node name="IngameHud" parent="." node_paths=PackedStringArray("game_scene") instance=ExtResource("1_ftevu")]
+game_scene = NodePath("..")
+
+[node name="WaterRecipient" parent="." instance=ExtResource("2_4n0s8")]
+position = Vector2(128, 160)
+
+[node name="HeatSource" parent="." instance=ExtResource("4_ixp7l")]
+position = Vector2(224, 192)
+
+[node name="PistonEntity" parent="." instance=ExtResource("5_wkts3")]
+position = Vector2(416, 160)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://b05xsus2ukjwf"]
+
+[ext_resource type="Shader" path="res://Test/ExpandTest/askdasd.gdshader" id="1_6wjyy"]
+[ext_resource type="Script" path="res://Test/ExpandTest/ExpandImage.gd" id="1_cnara"]
+[ext_resource type="Shader" path="res://Test/ExpandTest/node.gdshader" id="2_366vv"]
+[ext_resource type="Texture2D" uid="uid://cdvskg6ocxp78" path="res://Nodes/Entities/PipeEntity/pipe_spritesheet.png" id="2_g3f3u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yr0al"]
+shader = ExtResource("2_366vv")
+script = ExtResource("1_cnara")
+next_2D_pass = ExtResource("1_6wjyy")
+
+[node name="Node" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yr0al")
+position = Vector2(96, 64)
+texture = ExtResource("2_g3f3u")
