@@ -6,7 +6,6 @@ class_name Recipient extends StructureComponent
 @export var connecting_from : PipeEntity
 
 
-
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
@@ -18,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		contains_fluid = true
 	else:
 		contains_fluid = false
+		_stop_pass_fluid()
 
 
 func _manage_fluids() -> void:
@@ -32,6 +32,12 @@ func _manage_fluids() -> void:
 			pipe_entrance_1.connecting_to.fluid_type = fluid_type
 			pipe_entrance_1.connecting_to._manage_preassure(_get_newtown())
 			pipe_entrance_1.connecting_to.matter_mass = matter_mass
+
+
+func _stop_pass_fluid() -> void:
+	if pipe_entrance_1.connecting_to != null:
+		if pipe_entrance_1.connecting_to is PipeEntity:
+			(pipe_entrance_1.connecting_to as PipeEntity)._remove_fluids()
 
 
 func _manage_temperature_color() -> void:

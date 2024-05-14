@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cg6uknqviraed"]
+[gd_scene load_steps=19 format=3 uid="uid://cg6uknqviraed"]
 
 [ext_resource type="Script" path="res://Nodes/Entities/PipeEntity/pipe_entity.gd" id="1_fc74y"]
 [ext_resource type="Texture2D" uid="uid://cdvskg6ocxp78" path="res://Nodes/Entities/PipeEntity/pipe_spritesheet.png" id="2_6h7m2"]
@@ -214,11 +214,51 @@ _data = {
 "xLshapePipe": SubResource("Animation_gxyet")
 }
 
-[node name="PipeEntity" type="Node2D" node_paths=PackedStringArray("spritesheet_node", "pipe_entrance_1", "pipe_entrance_2")]
+[sub_resource type="Animation" id="Animation_pnbuk"]
+resource_name = "HeatLoop"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteNode:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2),
+"update": 0,
+"values": [Vector2(16, -32), Vector2(15, -33), Vector2(17, -31), Vector2(17, -33), Vector2(15, -31)]
+}
+
+[sub_resource type="Animation" id="Animation_wgqlk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteNode:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8ba3"]
+_data = {
+"HeatLoop": SubResource("Animation_pnbuk"),
+"RESET": SubResource("Animation_wgqlk")
+}
+
+[node name="PipeEntity" type="Node2D" node_paths=PackedStringArray("spritesheet_node", "pipe_entrance_1", "pipe_entrance_2", "heat_animation")]
 script = ExtResource("1_fc74y")
 spritesheet_node = NodePath("SpriteNode")
 pipe_entrance_1 = NodePath("Pipe_Entrance_1")
 pipe_entrance_2 = NodePath("Pipe_Entrance_2")
+heat_animation = NodePath("HeatAnimation")
+fluid_ebulition_point = 99.5
 temperature_modulation = ExtResource("2_n0sfa")
 
 [node name="PhysicalComponentDebugger" parent="." node_paths=PackedStringArray("physical_parent") instance=ExtResource("3_hdi1x")]
@@ -254,3 +294,8 @@ libraries = {
 
 [node name="PhysicalCollisionArea" parent="." node_paths=PackedStringArray("physical_parent") instance=ExtResource("7_ru1kb")]
 physical_parent = NodePath("..")
+
+[node name="HeatAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a8ba3")
+}

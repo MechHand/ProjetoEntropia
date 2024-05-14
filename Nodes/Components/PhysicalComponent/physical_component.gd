@@ -63,7 +63,7 @@ func _distribute_temperature(delta : float, emitter : PhysicisComponent, receive
 		receiver.current_temperature += ((emitter.current_temperature - receiver.current_temperature) * (delta * temperature_resitivity))
 	
 	if emitter != receiver:
-		current_temperature += (ambient_temperature - current_temperature) * (delta * (temperature_resitivity * 0.1))
+		current_temperature += (ambient_temperature - current_temperature) * (delta * (temperature_resitivity * 0.05))
 		
 		if current_temperature > fluid_ebulition_point:
 			mass_loss = inverse_lerp(fluid_ebulition_point, 10000.0, current_temperature)

@@ -13,6 +13,7 @@ enum PipeTypes {Horizontal, Vertical, Lshape, xLshape, yLshape, xyLshape}
 @export_group("External Nodes")
 @export_subgroup("Pipe connections")
 @export var connecting_from : PipeEntity
+@export var heat_animation : AnimationPlayer
 
 
 func _enter_tree() -> void:
@@ -40,20 +41,21 @@ func _physics_process(delta: float) -> void:
 			
 			spritesheet_node._set_sprite()
 	
-	
 	_check_connections(delta)
 	_manage_temperature_color()
 	_manage_fluids()
+	
+	if current_temperature > (max_temperature / 2.0):
+		heat_animation.speed_scale = current_temperature / 100.0
+		heat_animation.play(&"HeatLoop")
+	else:
+		heat_animation.stop()
 
 
 ## Send information to all pipe entrances to update its fluid property.
 func _manage_fluids() -> void:
-	if contains_fluid == true:
-		pipe_entrance_1._manage_particles()
-		pipe_entrance_2._manage_particles()
-	else:
-		pipe_entrance_1._manage_particles()
-		pipe_entrance_2._manage_particles()
+	pipe_entrance_1._manage_particles()
+	pipe_entrance_2._manage_particles()
 	
 	if contains_fluid == true:
 		if pipe_entrance_1.connecting_to != null:
@@ -74,6 +76,9 @@ func _check_connections(delta : float) -> void:
 		if contains_fluid == true :
 			if pipe_entrance_1.connecting_to != Recipient:
 				pipe_entrance_1.connecting_to._manage_preassure(fluid_force)
+		else:
+			if pipe_entrance_1.connecting_to is PipeEntity:
+				pipe_entrance_1.connecting_to._remove_fluids()
 	if pipe_entrance_2.connecting_to:
 		_distribute_temperature(delta, pipe_entrance_2.connecting_to, self)
 		_distribute_temperature(delta, self, pipe_entrance_2.connecting_to)
@@ -81,7 +86,27 @@ func _check_connections(delta : float) -> void:
 		if contains_fluid == true :
 			if pipe_entrance_2.connecting_to != Recipient:
 				pipe_entrance_2.connecting_to._manage_preassure(fluid_force)
+		else:
+			if pipe_entrance_2.connecting_to is PipeEntity:
+				pipe_entrance_2.connecting_to._remove_fluids()
 
 
 func _manage_temperature_color() -> void:
 	spritesheet_node.modulate = temperature_color
+
+
+func _remove_fluids() -> void:
+	contains_fluid = false
+	
+	if pipe_entrance_1.connecting_to != null:
+		if pipe_entrance_1.connecting_to.contains_fluid == true:
+			pipe_entrance_1.connecting_to.fluid_type = fluid_type
+			
+			if pipe_entrance_1.connecting_to is PipeEntity:
+				pipe_entrance_1.connecting_to._remove_fluids()
+	if pipe_entrance_2.connecting_to != null:
+		if pipe_entrance_2.connecting_to.contains_fluid == true:
+			pipe_entrance_2.connecting_to.fluid_type = fluid_type
+			
+			if pipe_entrance_2.connecting_to is PipeEntity:
+				pipe_entrance_2.connecting_to._remove_fluids()

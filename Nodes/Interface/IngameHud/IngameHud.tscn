@@ -141,6 +141,28 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Trabalho gerado : 0.0"
 
+[node name="MarginContainer4" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -104.0
+offset_right = 192.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer4"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "Você precisa gerar trabalho no pistão usando a força do vapor. Mantenha a água em alta temperatura e pressão para ter força o suficiente para gerar trabalho."
+autowrap_mode = 2
+visible_characters_behavior = 1
+
 [connection signal="pressed" from="Control/MarginContainer/ScrollContainer/VBoxContainer/CreatePipeButton" to="." method="_on_create_pipe_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/ScrollContainer/VBoxContainer/CreateRecipientButton" to="." method="_on_create_recipient_button_pressed"]
 [connection signal="text_submitted" from="Control/MarginContainer2/VBoxContainer/HBoxContainer/TemperatureEdit" to="." method="_on_temperature_edit_text_submitted"]
