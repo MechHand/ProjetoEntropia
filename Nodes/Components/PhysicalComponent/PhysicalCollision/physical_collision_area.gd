@@ -29,5 +29,6 @@ func _update_object_area() -> void:
 	
 	object_area = ((2 * PI) * raio * altura) + (2 * PI)
 	physical_parent.physical_area = object_area
+	physical_parent.total_area = object_area
 	
 	print(physical_parent.physical_area / 10.0)

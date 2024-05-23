@@ -22,9 +22,13 @@ func _on_temperature_edit_text_submitted(new_text: String) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	trabalho_label.text = str("Trabalho Gerado : ", snapped(PistonEntity.work_generated, 0.1))
+	trabalho_label.text = str("Trabalho Gerado  :  ", snapped(PistonEntity.work_generated, 0.1))
 	
 	if PistonEntity.work_generated >= 10.0:
 		trabalho_label.modulate = Color.GREEN
 	else:
 		trabalho_label.modulate = Color.WHITE
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/game_scene.tscn")

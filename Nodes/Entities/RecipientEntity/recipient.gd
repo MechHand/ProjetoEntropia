@@ -30,8 +30,8 @@ func _manage_fluids() -> void:
 		if pipe_entrance_1.connecting_to != null:
 			pipe_entrance_1.connecting_to.contains_fluid = true
 			pipe_entrance_1.connecting_to.fluid_type = fluid_type
+			pipe_entrance_1.connecting_to.matter_mass = matter_mass * mass_lost
 			pipe_entrance_1.connecting_to._manage_preassure(_get_newtown())
-			pipe_entrance_1.connecting_to.matter_mass = matter_mass
 
 
 func _stop_pass_fluid() -> void:

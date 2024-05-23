@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://oii018pw5y45"]
+[gd_scene load_steps=3 format=3 uid="uid://oii018pw5y45"]
 
 [ext_resource type="Script" path="res://Nodes/Components/PhysicalComponent/PhysicalComponentDebugger/physical_component_debugger.gd" id="1_q1n4n"]
+[ext_resource type="Theme" uid="uid://e87pq6i8on3d" path="res://Resources/Theme/InterfaceTheme.tres" id="2_5cp0t"]
 
 [node name="PhysicalComponentDebugger" type="Control"]
 z_index = 10
@@ -19,18 +20,17 @@ offset_bottom = 16.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 40.0
-offset_bottom = 75.0
+offset_top = -16.0
+offset_right = 115.0
+offset_bottom = 99.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme = ExtResource("2_5cp0t")
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 10
 text = "Pipe1 : Ok | Pipe2 : No
 30 Cº
 1 Pa"

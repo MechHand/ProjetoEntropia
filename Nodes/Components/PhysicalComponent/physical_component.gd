@@ -8,7 +8,7 @@ class_name PhysicisComponent extends PlaceableObject
 @export var heating_value : float = 1.0
 @export var colding_value : float = 0.4
 @export var fluid_ebulition_point : float = 100.0
-var mass_loss : float = 1.0
+var mass_lost : float = 0.995
 @export_group("Preassure")
 @export var fluid_force : float
 @export var current_preassure : float
@@ -22,6 +22,7 @@ var mass_loss : float = 1.0
 @export var temperature_color : Color
 
 static var ambient_temperature : float = 30.0
+var total_area : float
 
 
 func _physics_process(delta: float) -> void:
@@ -64,13 +65,6 @@ func _distribute_temperature(delta : float, emitter : PhysicisComponent, receive
 	
 	if emitter != receiver:
 		current_temperature += (ambient_temperature - current_temperature) * (delta * (temperature_resitivity * 0.05))
-		
-		if current_temperature > fluid_ebulition_point:
-			mass_loss = inverse_lerp(fluid_ebulition_point, 10000.0, current_temperature)
-		else:
-			mass_loss = lerpf(mass_loss, 0.0, 0.1)
-		
-		matter_mass = clampf(matter_mass - mass_loss, 0.0, 1000.0)
 
 
 func _distribute_preassure(delta : float, emitter : PhysicisComponent, receiver : PhysicisComponent) -> void:

@@ -75,17 +75,24 @@ func _check_connections(delta : float) -> void:
 		
 		if contains_fluid == true :
 			if pipe_entrance_1.connecting_to != Recipient:
-				pipe_entrance_1.connecting_to._manage_preassure(fluid_force)
+				pipe_entrance_1.connecting_to._manage_preassure(fluid_force * mass_lost)
+				
+				if pipe_entrance_1.connecting_to.matter_mass < matter_mass:
+					pipe_entrance_1.connecting_to.matter_mass = matter_mass * mass_lost
 		else:
 			if pipe_entrance_1.connecting_to is PipeEntity:
 				pipe_entrance_1.connecting_to._remove_fluids()
+				
 	if pipe_entrance_2.connecting_to:
 		_distribute_temperature(delta, pipe_entrance_2.connecting_to, self)
 		_distribute_temperature(delta, self, pipe_entrance_2.connecting_to)
 		
 		if contains_fluid == true :
 			if pipe_entrance_2.connecting_to != Recipient:
-				pipe_entrance_2.connecting_to._manage_preassure(fluid_force)
+				pipe_entrance_2.connecting_to._manage_preassure(fluid_force * mass_lost)
+				
+				if pipe_entrance_2.connecting_to.matter_mass < matter_mass:
+					pipe_entrance_2.connecting_to.matter_mass = matter_mass * mass_lost
 		else:
 			if pipe_entrance_2.connecting_to is PipeEntity:
 				pipe_entrance_2.connecting_to._remove_fluids()

@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://e87pq6i8on3d"]
+
+[ext_resource type="FontFile" uid="uid://b8js38uxv8f2n" path="res://Resources/Fonts/visitor1.ttf" id="2_ud6en"]
+
+[resource]
+Button/font_sizes/font_size = 10
+Button/fonts/font = ExtResource("2_ud6en")
+Label/font_sizes/font_size = 10
+Label/fonts/font = ExtResource("2_ud6en")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://btcj3hg4gw0qm"]
+[gd_scene load_steps=3 format=3 uid="uid://btcj3hg4gw0qm"]
 
 [ext_resource type="Script" path="res://Scenes/menu/ButtonHandler.gd" id="1_wxbyd"]
+[ext_resource type="Theme" uid="uid://e87pq6i8on3d" path="res://Resources/Theme/InterfaceTheme.tres" id="2_5uj1e"]
 
 [node name="GameMenuScreen" type="CanvasLayer"]
 
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_5uj1e")
 
 [node name="ButtonArea" type="MarginContainer" parent="Control"]
 layout_mode = 1

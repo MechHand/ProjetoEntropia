@@ -1,0 +1,39 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://b8js38uxv8f2n"
+path="res://.godot/imported/visitor1.ttf-d4393b75a050f2ac4931f573d27a939d.fontdata"
+
+[deps]
+
+source_file="res://Resources/Fonts/visitor1.ttf"
+dest_files=["res://.godot/imported/visitor1.ttf-d4393b75a050f2ac4931f573d27a939d.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=0
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=false
+force_autohinter=false
+hinting=0
+subpixel_positioning=0
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=false
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0),
+"variation_embolden": 0.0
+}]
+language_support={}
+script_support={}
+opentype_features={}

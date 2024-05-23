@@ -65,7 +65,9 @@ func _on_area_entered(area: Area2D) -> void:
 			if pipe_parent.connecting_to == null and (pipe_parent._placed == true and area.pipe_parent._placed == true):
 				
 				connecting_to = area.pipe_parent
-				#area.pipe_parent._manage_preassure(pipe_parent.fluid_force)
+				
+				if (area.pipe_parent.connecting_to != self.pipe_parent) and not GameManager.connected_pipes.has(connecting_to):
+					GameManager.connected_pipes.append(connecting_to)
 				
 		elif pipe_parent is Recipient:
 			if pipe_parent.connecting_to == null:
@@ -81,6 +83,8 @@ func _on_area_exited(area: Area2D) -> void:
 	if area is PipeEntrance:
 		if pipe_parent is PipeEntity and (pipe_parent._placed == true and area.pipe_parent._placed == true):
 			connecting_to = null
+			
+			pipe_parent.total_area -= pipe_parent.physical_area / 2.0
 		elif pipe_parent is Recipient:
 			connecting_to = null
 			pipe_parent.connecting_to = null

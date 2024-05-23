@@ -46,9 +46,10 @@ func _process(delta: float) -> void:
 				physical_parent.name, "\n",
 				"Ent1 : ", pipe1_status, "(", _get_pipe_name(physical_parent.pipe_entrance_1.connecting_to), ")"," | Ent2 : ", pipe2_status,"(", _get_pipe_name(physical_parent.pipe_entrance_2.connecting_to), ")", "\n",
 				snappedf(physical_parent.current_temperature, 0.01), " Cº", "\n",
-				physical_parent.current_preassure, " Pa", "\n",
-				"Mass Ratio ", physical_parent.mass_loss, "\n",
-				"Mass : ", physical_parent.matter_mass
+				snappedf(physical_parent.current_preassure, 0.01), " Pa", "\n",
+				"Mass Ratio ", physical_parent.mass_lost, "\n",
+				"Mass : ", physical_parent.matter_mass, " \n",
+				"Total area : ", GameManager._get_total_area()
 			)
 
 

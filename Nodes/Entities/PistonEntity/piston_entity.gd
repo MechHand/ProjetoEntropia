@@ -14,7 +14,8 @@ func _physics_process(delta):
 	_update_piston()
 	
 	if is_generating_work == true:
-		work_generated += 1.0 * delta
+		work_generated += ((pipe_connected.fluid_force * GameManager._get_total_area()) / 100000.0) * delta
+		print(pipe_connected.fluid_force * GameManager._get_total_area())
 
 
 func _on_verifier_area_area_entered(area):
