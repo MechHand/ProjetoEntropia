@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://conklkig1ygs6" path="res://Nodes/Entities/HeatSorce/heat_source.tscn" id="4_ixp7l"]
 [ext_resource type="PackedScene" uid="uid://ci2ugpkuwfalx" path="res://Nodes/Entities/PistonEntity/piston_entity.tscn" id="5_wkts3"]
 
-[node name="GameScene" type="Node2D"]
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("piston", "recipient")]
 script = ExtResource("1_li1v0")
+piston = NodePath("PistonEntity")
+recipient = NodePath("WaterRecipient")
 
 [node name="LevelBackground" type="Sprite2D" parent="."]
 texture = ExtResource("2_t1g5c")

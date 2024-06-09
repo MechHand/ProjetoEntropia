@@ -6,6 +6,7 @@ class_name Recipient extends StructureComponent
 @export var connecting_from : PipeEntity
 
 
+
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	

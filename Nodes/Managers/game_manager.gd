@@ -1,7 +1,8 @@
 class_name GameManager extends Node2D
 
+@export var piston : PistonEntity
 static var connected_pipes : Array[PipeEntity]
-
+@export var recipient : Recipient
 ## The class that holds useful information and functions about the game.
 
 
@@ -26,6 +27,7 @@ static func _get_total_area() -> float:
 	var area : float
 	
 	for pipe in connected_pipes:
-		area += pipe.physical_area / 10.0
+		if is_instance_valid(pipe):
+			area += pipe.physical_area / 10.0
 	
 	return area

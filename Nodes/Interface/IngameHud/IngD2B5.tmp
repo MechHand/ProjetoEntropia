@@ -157,8 +157,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -24.0
-offset_right = 356.0
+offset_top = -144.0
+offset_right = 216.0
 grow_vertical = 0
 mouse_filter = 2
 
@@ -168,10 +168,10 @@ mouse_filter = 2
 
 [node name="DicaLabel" type="Label" parent="Control/MarginContainer4/Panel"]
 layout_mode = 2
-offset_top = 8.0
+offset_top = 67.0
 offset_right = 366.0
-offset_bottom = 17.0
-text = "Aumente a temperatura do recipiente para transportar a água"
+offset_bottom = 76.0
+text = "Voce precisa gerar trabalho no pistao usando a forca do vapor. "
 visible_characters_behavior = 1
 
 [connection signal="pressed" from="Control/MarginContainer/ScrollContainer/VBoxContainer/CreatePipeButton" to="." method="_on_create_pipe_button_pressed"]
