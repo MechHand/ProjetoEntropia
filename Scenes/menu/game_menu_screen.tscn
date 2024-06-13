@@ -1,7 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://btcj3hg4gw0qm"]
+[gd_scene load_steps=16 format=3 uid="uid://btcj3hg4gw0qm"]
 
 [ext_resource type="Script" path="res://Scenes/menu/ButtonHandler.gd" id="1_wxbyd"]
 [ext_resource type="Theme" uid="uid://e87pq6i8on3d" path="res://Resources/Theme/InterfaceTheme.tres" id="2_5uj1e"]
+[ext_resource type="Texture2D" uid="uid://div6cqiwcd1po" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO1.png" id="3_djcol"]
+[ext_resource type="Texture2D" uid="uid://c7rty3ypkybcf" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO2.png" id="4_01c5k"]
+[ext_resource type="Texture2D" uid="uid://dxut5r57t1co" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO3.png" id="5_45kly"]
+[ext_resource type="Texture2D" uid="uid://db7b1otahnmtg" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO4.png" id="6_pne3e"]
+[ext_resource type="Texture2D" uid="uid://dkn1kwjuor0r2" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO5.png" id="7_5jhap"]
+[ext_resource type="Texture2D" uid="uid://3f4wxrit5yis" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO6.png" id="8_42j37"]
+[ext_resource type="Texture2D" uid="uid://widfirlhqaau" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO7.png" id="9_qv8jv"]
+[ext_resource type="Texture2D" uid="uid://bvwxh4ho2o1sd" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO8.png" id="10_l7l08"]
+[ext_resource type="Texture2D" uid="uid://81ybhusgabw1" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO9.png" id="11_matil"]
+[ext_resource type="Texture2D" uid="uid://c584skjs4wnc3" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO10.png" id="12_7ne71"]
+[ext_resource type="Texture2D" uid="uid://bk7la7ee28rgs" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO11.png" id="13_7rlgk"]
+[ext_resource type="Texture2D" uid="uid://y2rh2duoelej" path="res://Resources/Theme/MenuAnimation/menuentropiaCERTO12.png" id="14_h7oyg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4p5ti"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_djcol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_01c5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_45kly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pne3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5jhap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_42j37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qv8jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l7l08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_matil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7ne71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7rlgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_h7oyg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="GameMenuScreen" type="CanvasLayer"]
 
@@ -17,31 +73,56 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_5uj1e")
 
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/Panel"]
+position = Vector2(319, 184)
+sprite_frames = SubResource("SpriteFrames_4p5ti")
+autoplay = "default"
+frame_progress = 0.784455
+
 [node name="ButtonArea" type="MarginContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -256.0
-offset_top = 160.0
-offset_right = -32.0
-offset_bottom = 320.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = 55.0
+offset_right = -15.0
+offset_bottom = -69.0
 grow_horizontal = 0
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/ButtonArea"]
 layout_mode = 2
+theme = ExtResource("2_5uj1e")
 
 [node name="StartBtn" type="Button" parent="Control/ButtonArea/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.65
 text = "Start"
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
 
 [node name="SettingsBtn" type="Button" parent="Control/ButtonArea/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.43
 text = "Settings"
 
 [node name="ExitBtn" type="Button" parent="Control/ButtonArea/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.29
 text = "Exit"
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
@@ -52,12 +133,13 @@ offset_right = 256.0
 offset_bottom = 160.0
 
 [node name="Panel" type="Panel" parent="Control/MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "GAME TITLE"
+text = "Entropia"
 horizontal_alignment = 1
 vertical_alignment = 1
 

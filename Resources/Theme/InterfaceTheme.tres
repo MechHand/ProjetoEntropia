@@ -1,9 +1,19 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://e87pq6i8on3d"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://e87pq6i8on3d"]
 
+[ext_resource type="Texture2D" uid="uid://cp47kjlx7fv66" path="res://Resources/Theme/Buttons/entropia_buttoncomplete..png" id="2_b0kn6"]
 [ext_resource type="FontFile" uid="uid://b8js38uxv8f2n" path="res://Resources/Fonts/visitor1.ttf" id="2_ud6en"]
+[ext_resource type="Texture2D" uid="uid://qym8isjbc70v" path="res://Resources/Theme/Buttons/entropia_buttoncompleteNotPressed.png" id="3_xpm7p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w31u8"]
+texture = ExtResource("3_xpm7p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1p5v7"]
+texture = ExtResource("2_b0kn6")
 
 [resource]
-Button/font_sizes/font_size = 10
+Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("2_ud6en")
+Button/styles/hover = SubResource("StyleBoxTexture_w31u8")
+Button/styles/normal = SubResource("StyleBoxTexture_1p5v7")
 Label/font_sizes/font_size = 10
 Label/fonts/font = ExtResource("2_ud6en")
